@@ -70,7 +70,7 @@ Powered by:
 
 ## 📂 Project Structure
 
-
+```text
 ├── 📁 src/
 │   ├── 📁 controller/
 │   │   ├── 📄 product.controller.js
