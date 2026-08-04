@@ -99,3 +99,11 @@ Powered by:
 ├── ⚙️ package-lock.json
 └── ⚙️ package.json
 
+---
+
+## ⚙️ Installation and Setup
+
+Clone repository:https://github.com/Madhumita15/ai-generator-product-backend
+
+```bash
+git clone <repository-url>
