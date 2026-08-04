@@ -30,7 +30,7 @@ class UserController {
         {
           id: newUser.id,
           name: newUser.name,
-          email: newUser.email
+          email: newUser.email,
         },
         process.env.JWT_SECRET_KEY,
         { expiresIn: "7d" },
@@ -39,20 +39,19 @@ class UserController {
       res.cookie("token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
-        maxAge: 7 * 24 * 24 * 60 * 1000,
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
+        maxAge: 7 * 24 * 60 * 60 * 1000,
       });
-      
+
       return res.status(httpStatusCode.CREATE).json({
         status: true,
         message: "User created acount successfully!",
-         data: {
+        data: {
           id: newUser._id,
           name: newUser.name,
           email: newUser.email,
-         
         },
-         token:token
+        token: token,
       });
     } catch (error) {
       return res.status(httpStatusCode.SERVER_ERROR).json({
@@ -94,8 +93,8 @@ class UserController {
       res.cookie("token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
-        maxAge: 7 * 24 * 24 * 60 * 1000,
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
+        maxAge: 7 * 24 * 60 * 60 * 1000,
       });
       return res.status(httpStatusCode.OK).json({
         status: true,
@@ -104,9 +103,8 @@ class UserController {
           id: user._id,
           name: user.name,
           email: user.email,
-         
         },
-         token:token
+        token: token,
       });
     } catch (error) {
       return res.status(httpStatusCode.SERVER_ERROR).json({
