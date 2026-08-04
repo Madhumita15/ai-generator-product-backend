@@ -13,8 +13,9 @@ const cors = require('cors')
 dbCon()
 const allowedOrigins = [
   "http://localhost:5173",
+  "https://ai-generator-product-frontend.vercel.app",
   process.env.CLIENT_URL,
-];
+].filter(Boolean);
 app.use(
   cors({
     origin: function (origin, callback) {
