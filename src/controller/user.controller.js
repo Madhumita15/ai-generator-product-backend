@@ -67,7 +67,7 @@ class UserController {
       const user = await User.findOne({ email: email });
       if (!user) {
         return (
-          res.status(httpStatusCode.NOT_FOUND),
+          res.status(httpStatusCode.NOT_FOUND).
           json({
             status: false,
             message: "User not found",
@@ -149,7 +149,7 @@ class UserController {
       res.clearCookie("token", {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
       });
       return res.status(httpStatusCode.OK).json({
         status: true,
